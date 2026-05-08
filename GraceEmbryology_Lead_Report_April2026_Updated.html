@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GRACE Embryology — Lead Generation Report · April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0a0d12;--surface:#111520;--surface2:#161c2b;--border:#1e2a40;
+  --green:#00e5a0;--green2:#00c882;--green-dim:rgba(0,229,160,.08);--tag-bg:rgba(0,229,160,.1);--tag-border:rgba(0,229,160,.25);
+  --blue:#4a9eff;--blue-dim:rgba(74,158,255,.08);--blue-border:rgba(74,158,255,.25);
+  --purple:#a78bfa;--purple-dim:rgba(167,139,250,.08);--purple-border:rgba(167,139,250,.25);
+  --orange:#fb923c;--orange-dim:rgba(251,146,60,.08);--orange-border:rgba(251,146,60,.25);
+  --gold:#f0c060;--text:#e8edf5;--muted:#6b7a96;--muted2:#8b9ab5;--white:#fff;--radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0a0d12 0%,#0d1020 55%,#081208 100%);border-bottom:1px solid var(--border);padding:44px 24px 36px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,160,.07) 0%,transparent 70%);top:-130px;right:-70px;pointer-events:none;}
+.hero::after{content:'';position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(74,158,255,.05) 0%,transparent 70%);bottom:-80px;left:-50px;pointer-events:none;}
+.hero-in{max-width:900px;margin:0 auto;}
+.hbadge{display:inline-flex;align-items:center;gap:6px;background:var(--tag-bg);border:1px solid var(--tag-border);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--green);text-transform:uppercase;margin-bottom:14px;}
+.hbadge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hagency{font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;margin-bottom:6px;}
+.htitle{font-size:clamp(26px,5vw,44px);font-weight:800;color:var(--white);line-height:1.1;margin-bottom:4px;}
+.htitle .g{color:var(--green);}
+.hsub{font-size:13px;color:var(--muted2);margin-bottom:22px;}
+
+/* SOURCE PILLS */
+.src-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;}
+.src-pill{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:10px;font-size:12px;font-weight:600;}
+.src-pill.meta{background:var(--blue-dim);border:1px solid var(--blue-border);color:var(--blue);}
+.src-pill.organic{background:var(--green-dim);border:1px solid var(--tag-border);color:var(--green);}
+.src-pill .ico{font-size:16px;}
+.src-pill .num{font-family:'DM Mono',monospace;font-size:18px;font-weight:800;}
+
+/* BIG STATS */
+.big-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:22px;}
+.bstat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 10px;text-align:center;}
+.bstat .n{font-size:26px;font-weight:800;font-family:'DM Mono',monospace;line-height:1;margin-bottom:4px;}
+.bstat .n.g{color:var(--green);}
+.bstat .n.b{color:var(--blue);}
+.bstat .n.p{color:var(--purple);}
+.bstat .n.o{color:var(--orange);}
+.bstat .n.gold{color:var(--gold);}
+.bstat .l{font-size:10px;color:var(--muted);letter-spacing:.04em;}
+
+/* META CAMPAIGN BOX */
+.meta-box{background:var(--surface);border:1px solid var(--blue-border);border-radius:var(--radius);padding:16px;margin-bottom:10px;}
+.meta-box-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.meta-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.mkpi{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:center;}
+.mkpi .v{font-size:20px;font-weight:800;font-family:'DM Mono',monospace;color:var(--blue);line-height:1;}
+.mkpi .l{font-size:10px;color:var(--muted);margin-top:3px;}
+
+.hfoot{font-size:11px;color:var(--muted);}
+.hfoot strong{color:var(--green);}
+
+/* TOC */
+.toc-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:11px 20px;position:sticky;top:0;z-index:100;}
+.toc-in{max-width:900px;margin:0 auto;overflow-x:auto;white-space:nowrap;scrollbar-width:none;}
+.toc-in::-webkit-scrollbar{display:none;}
+.toc-lbl{font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-right:8px;}
+.toc-in a{display:inline-block;font-size:11px;font-weight:500;background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:4px 12px;margin-right:5px;color:var(--muted2);text-decoration:none;transition:all .18s;}
+.toc-in a:hover{background:var(--green-dim);border-color:var(--tag-border);color:var(--green);}
+
+/* MAIN */
+.main{max-width:900px;margin:0 auto;padding:0 16px 60px;}
+
+/* SECTION */
+.section{margin:40px 0 0;scroll-margin-top:66px;}
+.sec-hdr{display:flex;align-items:center;gap:13px;background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:var(--radius);padding:13px 16px;margin-bottom:14px;}
+.sec-hdr.blue{border-left-color:var(--blue);}
+.sec-hdr.purple{border-left-color:var(--purple);}
+.sec-hdr.orange{border-left-color:var(--orange);}
+.sec-ico{width:36px;height:36px;border-radius:8px;background:var(--green-dim);border:1px solid var(--tag-border);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.sec-ico.blue{background:var(--blue-dim);border-color:var(--blue-border);}
+.sec-ico.purple{background:var(--purple-dim);border-color:var(--purple-border);}
+.sec-ttl{font-size:14px;font-weight:700;color:var(--white);}
+.sec-sub2{font-size:11px;color:var(--muted2);margin-top:1px;}
+.sec-cnt{margin-left:auto;flex-shrink:0;background:var(--green-dim);border:1px solid var(--tag-border);border-radius:20px;padding:3px 12px;font-size:11px;font-weight:700;color:var(--green);font-family:'DM Mono',monospace;white-space:nowrap;}
+.sec-cnt.blue{background:var(--blue-dim);border-color:var(--blue-border);color:var(--blue);}
+
+/* INSIGHT CARDS */
+.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;}
+.ins-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;}
+.ins-card .t{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;}
+.ins-row{display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.04);}
+.ins-row:last-child{border-bottom:none;}
+.ins-row .k{font-size:12px;color:var(--muted2);}
+.ins-row .v{font-size:12px;font-weight:700;font-family:'DM Mono',monospace;color:var(--white);}
+.ins-row .bar-wrap{flex:1;margin:0 10px;height:4px;background:var(--border);border-radius:4px;overflow:hidden;}
+.ins-row .bar{height:100%;background:var(--green);border-radius:4px;}
+.ins-row .bar.blue{background:var(--blue);}
+.ins-row .bar.purple{background:var(--purple);}
+.ins-row .bar.orange{background:var(--orange);}
+
+/* LEAD TABLE */
+.lead-table{width:100%;border-collapse:collapse;font-size:12px;}
+.lead-table thead tr{background:var(--surface2);}
+.lead-table th{padding:9px 10px;font-size:10px;font-weight:600;color:var(--muted2);text-align:left;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+.lead-table td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle;}
+.lead-table tr:hover td{background:rgba(255,255,255,.02);}
+.lead-table .num{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);width:32px;}
+.badge{display:inline-flex;align-items:center;gap:3px;border-radius:20px;padding:2px 8px;font-size:10px;font-weight:600;}
+.badge.yes{background:var(--tag-bg);border:1px solid var(--tag-border);color:var(--green);}
+.badge.no{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#f87171;}
+.badge.this{background:var(--orange-dim);border:1px solid var(--orange-border);color:var(--orange);}
+.badge.discuss{background:var(--blue-dim);border:1px solid var(--blue-border);color:var(--blue);}
+.badge.above{background:var(--green-dim);border:1px solid var(--tag-border);color:var(--green);}
+.badge.below{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:#f87171;}
+.badge.meta{background:var(--blue-dim);border:1px solid var(--blue-border);color:var(--blue);}
+.badge.organic{background:var(--green-dim);border:1px solid var(--tag-border);color:var(--green);}
+.name-cell{font-weight:600;color:var(--white);font-size:12px;}
+.phone-cell{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted2);}
+.deg-cell{font-size:11px;color:var(--muted2);}
+.loc-cell{font-size:11px;color:var(--muted2);}
+
+hr.sdiv{border:none;border-top:1px solid var(--border);margin:40px 0 0;}
+
+/* FOOTER */
+.rep-footer{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-top:40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.fl{font-size:12px;color:var(--muted);}
+.fl strong{color:var(--green);font-size:13px;}
+.fstamp{background:var(--green-dim);border:1.5px solid var(--tag-border);border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;color:var(--green);}
+
+@media(max-width:600px){
+  .big-stats{grid-template-columns:repeat(3,1fr);}
+  .meta-kpis{grid-template-columns:repeat(2,1fr);}
+  .insight-grid{grid-template-columns:1fr;}
+  .hero{padding:28px 14px 22px;}
+  .main{padding:0 12px 44px;}
+  .lead-table th:nth-child(5),.lead-table td:nth-child(5){display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ HERO ══════════════ -->
+<div class="hero">
+  <div class="hero-in">
+    <div class="hbadge"><span class="dot"></span>Lead Generation Report · April 2026</div>
+    <div class="hagency">Cyberbizz Technologies &nbsp;·&nbsp; Performance Report</div>
+    <div class="htitle">GRACE <span class="g">Embryology</span></div>
+    <div class="hsub">MSc Clinical Embryology — Lead Generation Report &nbsp;·&nbsp; April 2026</div>
+
+    <div class="src-row">
+      <div class="src-pill meta"><span class="ico">🎯</span><div><div style="font-size:10px;opacity:.7;letter-spacing:.06em;text-transform:uppercase">Meta Ads (Facebook)</div><span class="num">127</span> Leads</div></div>
+      <div class="src-pill organic"><span class="ico">🌿</span><div><div style="font-size:10px;opacity:.7;letter-spacing:.06em;text-transform:uppercase">Organic (SEO / Direct)</div><span class="num">37</span> Leads</div></div>
+    </div>
+
+    <div class="big-stats">
+      <div class="bstat"><div class="n g">164</div><div class="l">Total Leads</div></div>
+      <div class="bstat"><div class="n b">127</div><div class="l">Meta Ads Leads</div></div>
+      <div class="bstat"><div class="n g">37</div><div class="l">Organic Leads</div></div>
+      <div class="bstat"><div class="n p">95%</div><div class="l">Eligible (≥45%)</div></div>
+      <div class="bstat"><div class="n o">87%</div><div class="l">Qualified Degree</div></div>
+    </div>
+
+    <div class="meta-box">
+      <div class="meta-box-title">🎯 Meta Ads Campaign — MSc Clinical Embryology</div>
+      <div class="meta-kpis">
+        <div class="mkpi"><div class="v">127</div><div class="l">Leads (Form)</div></div>
+        <div class="mkpi"><div class="v">₹6,197</div><div class="l">Amount Spent</div></div>
+        <div class="mkpi"><div class="v">1,20,692</div><div class="l">Impressions</div></div>
+        <div class="mkpi"><div class="v">33,583</div><div class="l">Reach</div></div>
+      </div>
+    </div>
+
+    <div class="hfoot">Prepared by &nbsp;<strong>Cyberbizz Technologies</strong>&nbsp; · graceembryology.com · April 2026</div>
+  </div>
+</div>
+
+<!-- ══════════════ TOC ══════════════ -->
+<div class="toc-wrap">
+  <div class="toc-in">
+    <span class="toc-lbl">Sections ↓</span>
+    <a href="#overview">Overview</a>
+    <a href="#meta-insights">Meta Insights</a>
+    <a href="#meta-leads">Meta Leads (127)</a>
+    <a href="#organic-leads">Organic Leads (37)</a>
+    <a href="#state-breakdown">State Breakdown</a>
+    <a href="#degree-breakdown">Degree Analysis</a>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ══════════════ OVERVIEW ══════════════ -->
+<div class="section" id="overview">
+  <div class="sec-hdr">
+    <div class="sec-ico">📊</div>
+    <div><div class="sec-ttl">Campaign Overview — April 2026</div><div class="sec-sub2">Combined Meta + Organic Lead Summary</div></div>
+    <div class="sec-cnt">164 Total Leads</div>
+  </div>
+
+  <div class="insight-grid">
+    <div class="ins-card">
+      <div class="t">Lead Source Split</div>
+      <div class="ins-row"><span class="k">Meta Ads (Facebook)</span><div class="bar-wrap"><div class="bar blue" style="width:78%"></div></div><span class="v" style="color:var(--blue)">127</span></div>
+      <div class="ins-row"><span class="k">Organic / Direct</span><div class="bar-wrap"><div class="bar" style="width:22%"></div></div><span class="v" style="color:var(--green)">37</span></div>
+    </div>
+    <div class="ins-card">
+      <div class="t">Admission Readiness</div>
+      <div class="ins-row"><span class="k">Ready This Month</span><div class="bar-wrap"><div class="bar orange" style="width:27%"></div></div><span class="v" style="color:var(--orange)">35</span></div>
+      <div class="ins-row"><span class="k">After Discussion</span><div class="bar-wrap"><div class="bar blue" style="width:73%"></div></div><span class="v" style="color:var(--blue)">91</span></div>
+    </div>
+    <div class="ins-card">
+      <div class="t">Degree Eligibility</div>
+      <div class="ins-row"><span class="k">Eligible (Yes)</span><div class="bar-wrap"><div class="bar" style="width:95%"></div></div><span class="v">120</span></div>
+      <div class="ins-row"><span class="k">Not Eligible (No)</span><div class="bar-wrap"><div class="bar orange" style="width:5%"></div></div><span class="v" style="color:var(--orange)">6</span></div>
+    </div>
+    <div class="ins-card">
+      <div class="t">Percentage in Degree</div>
+      <div class="ins-row"><span class="k">≥ 45% (Eligible)</span><div class="bar-wrap"><div class="bar" style="width:96%"></div></div><span class="v">121</span></div>
+      <div class="ins-row"><span class="k">Below 45%</span><div class="bar-wrap"><div class="bar orange" style="width:4%"></div></div><span class="v" style="color:var(--orange)">5</span></div>
+    </div>
+    <div class="ins-card">
+      <div class="t">Meta Ad Performance</div>
+      <div class="ins-row"><span class="k">Cost per Lead</span><div class="bar-wrap"><div class="bar blue" style="width:60%"></div></div><span class="v" style="color:var(--blue)">₹48.8</span></div>
+      <div class="ins-row"><span class="k">CTR (Leads/Reach)</span><div class="bar-wrap"><div class="bar" style="width:38%"></div></div><span class="v">0.38%</span></div>
+    </div>
+    <div class="ins-card">
+      <div class="t">Top Source States</div>
+      <div class="ins-row"><span class="k">Maharashtra</span><div class="bar-wrap"><div class="bar" style="width:100%"></div></div><span class="v">16</span></div>
+      <div class="ins-row"><span class="k">Uttar Pradesh</span><div class="bar-wrap"><div class="bar" style="width:69%"></div></div><span class="v">11</span></div>
+      <div class="ins-row"><span class="k">Tamil Nadu</span><div class="bar-wrap"><div class="bar blue" style="width:56%"></div></div><span class="v">9</span></div>
+      <div class="ins-row"><span class="k">Karnataka</span><div class="bar-wrap"><div class="bar purple" style="width:50%"></div></div><span class="v">8</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ META INSIGHTS ══════════════ -->
+<hr class="sdiv"/>
+<div class="section" id="meta-insights">
+  <div class="sec-hdr blue">
+    <div class="sec-ico blue">🎯</div>
+    <div><div class="sec-ttl">Meta Ads Campaign Performance</div><div class="sec-sub2">Campaign: MSc Clinical Embryology · Facebook Lead Form Ads · April 2026</div></div>
+    <div class="sec-cnt blue">127 Leads</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:12px;">📣 Campaign Stats</div>
+      <div class="ins-row"><span class="k">Campaign Name</span><span class="v" style="font-family:'Sora',sans-serif;font-size:11px;color:var(--text)">Msc Clinical Embryology</span></div>
+      <div class="ins-row"><span class="k">Ad Type</span><span class="v" style="font-family:'Sora',sans-serif;font-size:11px">Lead Form (Instant Form)</span></div>
+      <div class="ins-row"><span class="k">Period</span><span class="v" style="font-family:'Sora',sans-serif;font-size:11px">April 2026 (Last Month)</span></div>
+      <div class="ins-row"><span class="k">Total Results</span><span class="v" style="color:var(--blue)">127 Leads</span></div>
+      <div class="ins-row"><span class="k">Amount Spent</span><span class="v" style="color:var(--gold)">₹6,197.18</span></div>
+      <div class="ins-row"><span class="k">Impressions</span><span class="v">1,20,692</span></div>
+      <div class="ins-row"><span class="k">Reach</span><span class="v">33,583</span></div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:12px;">📈 Efficiency Metrics</div>
+      <div class="ins-row"><span class="k">Cost Per Lead (CPL)</span><span class="v" style="color:var(--green)">₹48.80</span></div>
+      <div class="ins-row"><span class="k">Leads / Impression</span><span class="v">1 per 950</span></div>
+      <div class="ins-row"><span class="k">Leads / Reach</span><span class="v">1 per 264</span></div>
+      <div class="ins-row"><span class="k">Frequency</span><span class="v">3.59×</span></div>
+      <div class="ins-row"><span class="k">Lead Rate (of Reach)</span><span class="v">0.38%</span></div>
+      <div class="ins-row"><span class="k">Eligible Leads</span><span class="v" style="color:var(--green)">~120 (95%)</span></div>
+      <div class="ins-row"><span class="k">Hot Leads (This Month)</span><span class="v" style="color:var(--orange)">35 (27%)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ META LEADS TABLE ══════════════ -->
+<hr class="sdiv"/>
+<div class="section" id="meta-leads">
+  <div class="sec-hdr blue">
+    <div class="sec-ico blue">📋</div>
+    <div><div class="sec-ttl">Meta Ads — All 127 Leads (April 2026)</div><div class="sec-sub2">Facebook Lead Form · MSc Clinical Embryology Campaign · 7 Apr – 30 Apr 2026</div></div>
+    <div class="sec-cnt blue">127 Leads</div>
+  </div>
+  <div style="overflow-x:auto;">
+  <table class="lead-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Degree</th>
+        <th>City / State</th>
+        <th>Eligible?</th>
+        <th>%age</th>
+        <th>Admission</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="num">001</td><td class="name-cell">Janhvi Waje</td><td class="phone-cell">+91 98xxxxxx03</td><td class="deg-cell">Bsc Biotechnology</td><td class="loc-cell">Navi Mumbai, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">002</td><td class="name-cell">Lead #002</td><td class="phone-cell">+91 88xxxxxx55</td><td class="deg-cell">Bsc MLT</td><td class="loc-cell">Gurgaon, Haryana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">003</td><td class="name-cell">Anooja L.G</td><td class="phone-cell">+91 99xxxxxx00</td><td class="deg-cell">BSc Microbiology</td><td class="loc-cell">Thiruvanandapuram, Kerala</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">004</td><td class="name-cell">N. S.</td><td class="phone-cell">+91 70xxxxxx88</td><td class="deg-cell">Graduation</td><td class="loc-cell">Lucknow, Uttar Pradesh</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">005</td><td class="name-cell">Rumana</td><td class="phone-cell">+91 96xxxxxx21</td><td class="deg-cell">Bsc Zoology</td><td class="loc-cell">Trichy, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">006</td><td class="name-cell">Sathish</td><td class="phone-cell">+91 91xxxxxx05</td><td class="deg-cell">BSc Clinical Embryology</td><td class="loc-cell">Dharmapuri, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">007</td><td class="name-cell">Shailesh Kumar Bind</td><td class="phone-cell">+91 89xxxxxx87</td><td class="deg-cell">MSc Biochemistry</td><td class="loc-cell">Mumbai Chembur, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">008</td><td class="name-cell">Priyanshi Padhiyar</td><td class="phone-cell">+91 81xxxxxx85</td><td class="deg-cell">MSc Microbiology</td><td class="loc-cell">Rajkot, Gujarat</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">009</td><td class="name-cell">Shaurya Shukla</td><td class="phone-cell">+91 94xxxxxx33</td><td class="deg-cell">BAMS</td><td class="loc-cell">Kanpur, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">010</td><td class="name-cell">Akanksha Sunka</td><td class="phone-cell">+91 85xxxxxx29</td><td class="deg-cell">Bsc Biotechnology</td><td class="loc-cell">Mumbai, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">011</td><td class="name-cell">George</td><td class="phone-cell">+91 80xxxxxx65</td><td class="deg-cell">Bsc Perfusion</td><td class="loc-cell">Guntur, Andhra Pradesh</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">012</td><td class="name-cell">Goutam Basak GB</td><td class="phone-cell">+91 78xxxxxx61</td><td class="deg-cell">MSc</td><td class="loc-cell">Raiganj, West Bengal</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">013</td><td class="name-cell">Nidhi</td><td class="phone-cell">+91 96xxxxxx62</td><td class="deg-cell">Bachelor's in Life Sciences</td><td class="loc-cell">Dehradun, Uttarakhand</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">014</td><td class="name-cell">Shreeharsha Puranik</td><td class="phone-cell">+91 91xxxxxx16</td><td class="deg-cell">Bsc Biotechnology</td><td class="loc-cell">Dharawad, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">015</td><td class="name-cell">Pavi Raja Rev</td><td class="phone-cell">80xxxxxx78</td><td class="deg-cell">BDS</td><td class="loc-cell">Chengalpet, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">016</td><td class="name-cell">Hufeza Ansari</td><td class="phone-cell">+91 94xxxxxx84</td><td class="deg-cell">BHMS</td><td class="loc-cell">Indore, Madhya Pradesh</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">017</td><td class="name-cell">Dr Ankitha Venkatesh</td><td class="phone-cell">+91 94xxxxxx23</td><td class="deg-cell">BHMS</td><td class="loc-cell">Kolar, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">018</td><td class="name-cell">Prakash Prajapati</td><td class="phone-cell">+91 95xxxxxx30</td><td class="deg-cell">B.Sc Nursing</td><td class="loc-cell">Satna, Madhya Pradesh</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">019</td><td class="name-cell">Mayank</td><td class="phone-cell">+91 95xxxxxx06</td><td class="deg-cell">Bsc Biotechnology</td><td class="loc-cell">Agra, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">020</td><td class="name-cell">Asavari Dharade</td><td class="phone-cell">+91 88xxxxxx24</td><td class="deg-cell">MSc Clinical Embryology</td><td class="loc-cell">Thane, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">021</td><td class="name-cell">Shadab</td><td class="phone-cell">+91 98xxxxxx12</td><td class="deg-cell">Bsc Zoology</td><td class="loc-cell">Kaushambi, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">022</td><td class="name-cell">Shridhar Amanchi</td><td class="phone-cell">+91 91xxxxxx43</td><td class="deg-cell">Bsc Biotechnology</td><td class="loc-cell">Surat, Gujarat</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">023</td><td class="name-cell">Mahesh Wary</td><td class="phone-cell">+91 88xxxxxx65</td><td class="deg-cell">Bsc Nursing</td><td class="loc-cell">Erode, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">024</td><td class="name-cell">Mukesh</td><td class="phone-cell">+91 91xxxxxx51</td><td class="deg-cell">BPT</td><td class="loc-cell">Phalodi, Jodhpur</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">025</td><td class="name-cell">Aksh Verma</td><td class="phone-cell">+91 99xxxxxx24</td><td class="deg-cell">Bsc Zoology / Life Science</td><td class="loc-cell">Delhi</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">026</td><td class="name-cell">Ramola</td><td class="phone-cell">98xxxxxx58</td><td class="deg-cell">Bsc Botany and Zoology</td><td class="loc-cell">Bangalore, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">027</td><td class="name-cell">Sahzahan</td><td class="phone-cell">+91 75xxxxxx10</td><td class="deg-cell">Bachelors Community Health</td><td class="loc-cell">Jorhat, Assam</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">028</td><td class="name-cell">Lead #028</td><td class="phone-cell">94xxxxxx36</td><td class="deg-cell">Bsc Microbiology</td><td class="loc-cell">Bangalore, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">029</td><td class="name-cell">Parmanand Rohilla</td><td class="phone-cell">+91 94xxxxxx98</td><td class="deg-cell">MSc Life Sciences</td><td class="loc-cell">Sonipat, Haryana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">030</td><td class="name-cell">Aarti Ahir</td><td class="phone-cell">+91 96xxxxxx72</td><td class="deg-cell">Aarti Ahir</td><td class="loc-cell">Rajkot, Gujarat</td><td><span class="badge yes">Yes</span></td><td><span class="badge below">Below 45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">031</td><td class="name-cell">Suman Vijay Shankar Sahu</td><td class="phone-cell">+91 79xxxxxx80</td><td class="deg-cell">Bsc Microbiology &amp; Botany</td><td class="loc-cell">Mankapur, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">032</td><td class="name-cell">Shailendra CK Pal</td><td class="phone-cell">+91 78xxxxxx18</td><td class="deg-cell">Bsc Life Sciences</td><td class="loc-cell">Amethi, UP</td><td><span class="badge no">No</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">033</td><td class="name-cell">Dr. Swaruprani</td><td class="phone-cell">+91 94xxxxxx51</td><td class="deg-cell">BAMS</td><td class="loc-cell">Coimbatore, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">034</td><td class="name-cell">Rahim Sayad</td><td class="phone-cell">+91 95xxxxxx18</td><td class="deg-cell">BSc Biochemistry</td><td class="loc-cell">Nanded Waghala, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">035</td><td class="name-cell">Nukabatini Sudershan Herald</td><td class="phone-cell">+91 96xxxxxx09</td><td class="deg-cell">BSc Biotech/Micro/Chemistry</td><td class="loc-cell">Hyderabad, Telangana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">036</td><td class="name-cell">Deepak Pal</td><td class="phone-cell">+91 95xxxxxx13</td><td class="deg-cell">MA Sociology</td><td class="loc-cell">Kanpur Nagar, UP</td><td><span class="badge no">No</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">037</td><td class="name-cell">Parvin Shaikh</td><td class="phone-cell">+91 98xxxxxx05</td><td class="deg-cell">MSc Biotechnology</td><td class="loc-cell">Solapur, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">038</td><td class="name-cell">Jayesh Patel</td><td class="phone-cell">+91 90xxxxxx50</td><td class="deg-cell">Bsc Microbiology</td><td class="loc-cell">Borsad, Gujarat</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">039</td><td class="name-cell">Boyching Okram II</td><td class="phone-cell">+91 98xxxxxx27</td><td class="deg-cell">BHMS Completed</td><td class="loc-cell">Thoubal, Manipur</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">040</td><td class="name-cell">Abinaya</td><td class="phone-cell">+91 93xxxxxx01</td><td class="deg-cell">B.Sc MLT</td><td class="loc-cell">Salem, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">041</td><td class="name-cell">Chitra Priya</td><td class="phone-cell">+91 90xxxxxx51</td><td class="deg-cell">Clinical Embryology Interest</td><td class="loc-cell">Mumbai/Thane, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">042</td><td class="name-cell">Akhilesh Kumar Shukla</td><td class="phone-cell">+91 79xxxxxx26</td><td class="deg-cell">BSc MSc</td><td class="loc-cell">Prayagraj, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge below">Below 45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">043</td><td class="name-cell">Parul</td><td class="phone-cell">+91 82xxxxxx50</td><td class="deg-cell">BSc</td><td class="loc-cell">Auraiya, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">044</td><td class="name-cell">Dr Ajay Kumar Choudhary</td><td class="phone-cell">+91 97xxxxxx44</td><td class="deg-cell">PhD Medicine Microbiology</td><td class="loc-cell">Udaipur, Rajasthan</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">045</td><td class="name-cell">Anchal Rajput</td><td class="phone-cell">+91 62xxxxxx10</td><td class="deg-cell">MSc Biotechnology</td><td class="loc-cell">Gurugram, Haryana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">046</td><td class="name-cell">Hema S</td><td class="phone-cell">+91 63xxxxxx56</td><td class="deg-cell">Bsc Botany &amp; Zoology</td><td class="loc-cell">Bangalore, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">047</td><td class="name-cell">Lead #047</td><td class="phone-cell">+91 95xxxxxx62</td><td class="deg-cell">Bsc Microbiology</td><td class="loc-cell">Kozhikode, Kerala</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">048</td><td class="name-cell">Malik</td><td class="phone-cell">+91 83xxxxxx38</td><td class="deg-cell">Hands-on Training</td><td class="loc-cell">Kasuli, Himachal Pradesh</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">049</td><td class="name-cell">Zeenath</td><td class="phone-cell">+91 94xxxxxx06</td><td class="deg-cell">Bsc Biotech / Micro / Chem</td><td class="loc-cell">Hyderabad, Telangana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">050</td><td class="name-cell">Pankaj</td><td class="phone-cell">+91 88xxxxxx75</td><td class="deg-cell">—</td><td class="loc-cell">Lalitpur, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">051</td><td class="name-cell">Asthagoel</td><td class="phone-cell">+91 98xxxxxx69</td><td class="deg-cell">BMLT</td><td class="loc-cell">Gautam Buddha Nagar, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">052</td><td class="name-cell">Manasvi Bhadra</td><td class="phone-cell">+91 83xxxxxx16</td><td class="deg-cell">Bsc Zoology</td><td class="loc-cell">Mumbai, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">053</td><td class="name-cell">Dr. Lavina</td><td class="phone-cell">+91 99xxxxxx74</td><td class="deg-cell">BAMS</td><td class="loc-cell">Sonipat, Haryana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">054</td><td class="name-cell">Lead #054</td><td class="phone-cell">+91 94xxxxxx29</td><td class="deg-cell">Bsc Reproductive Medicine</td><td class="loc-cell">Gummidipoondi, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">055</td><td class="name-cell">Smiley</td><td class="phone-cell">63xxxxxx97</td><td class="deg-cell">Bsc Biotechnology</td><td class="loc-cell">Bengaluru, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">056</td><td class="name-cell">Dr. Meena Yadav</td><td class="phone-cell">+91 83xxxxxx67</td><td class="deg-cell">BHMS</td><td class="loc-cell">Kanpur, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">057</td><td class="name-cell">Ahmad Manzoor</td><td class="phone-cell">+91 70xxxxxx82</td><td class="deg-cell">BSc</td><td class="loc-cell">Srinagar, J&amp;K</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">058</td><td class="name-cell">Dr Bilal Ahmad Wani</td><td class="phone-cell">+91 96xxxxxx40</td><td class="deg-cell">PhD Microbial Biotechnology</td><td class="loc-cell">Srinagar, J&amp;K</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">059</td><td class="name-cell">Tamjeed Ahmed</td><td class="phone-cell">+91 72xxxxxx55</td><td class="deg-cell">Diploma in DMST</td><td class="loc-cell">Hyderabad, Telangana</td><td><span class="badge no">No</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">060</td><td class="name-cell">Vidhi Thakrey</td><td class="phone-cell">+91 78xxxxxx56</td><td class="deg-cell">Pursuing Bsc Medical Micro</td><td class="loc-cell">Kanpur, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">061</td><td class="name-cell">Keshu Verma</td><td class="phone-cell">+91 82xxxxxx32</td><td class="deg-cell">MSc Embryology</td><td class="loc-cell">Hisar, Haryana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">062</td><td class="name-cell">Nikita Jaiswal</td><td class="phone-cell">+91 72xxxxxx87</td><td class="deg-cell">DMLT / BSc</td><td class="loc-cell">Jaunpur, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">063</td><td class="name-cell">Romesh Sharma</td><td class="phone-cell">+91 78xxxxxx97</td><td class="deg-cell">MBBS</td><td class="loc-cell">Jammu, J&amp;K</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">064</td><td class="name-cell">Syeda Farha Kulsum KS</td><td class="phone-cell">+91 89xxxxxx51</td><td class="deg-cell">BNYS</td><td class="loc-cell">Kirugavalu, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">065</td><td class="name-cell">Itsdhanush Official</td><td class="phone-cell">+91 70xxxxxx76</td><td class="deg-cell">Bsc MLT</td><td class="loc-cell">Chennai, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">066</td><td class="name-cell">Atul Srivastava</td><td class="phone-cell">+91 94xxxxxx45</td><td class="deg-cell">PhD</td><td class="loc-cell">Varanasi, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">067</td><td class="name-cell">Lead #067</td><td class="phone-cell">+91 89xxxxxx03</td><td class="deg-cell">Bsc Microbiology</td><td class="loc-cell">Thoothukudi, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">068</td><td class="name-cell">Venky</td><td class="phone-cell">+91 79xxxxxx25</td><td class="deg-cell">MSc Clinical Embryology / Bsc MLT</td><td class="loc-cell">Tirupathi, Andhra Pradesh</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">069</td><td class="name-cell">Menaka Srini</td><td class="phone-cell">+91 98xxxxxx11</td><td class="deg-cell">Bsc Biotechnology</td><td class="loc-cell">Chennai, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">070</td><td class="name-cell">Abhishek Belke</td><td class="phone-cell">+91 74xxxxxx31</td><td class="deg-cell">BSc Graduate</td><td class="loc-cell">Udgir, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">071</td><td class="name-cell">Atul Mishra</td><td class="phone-cell">+91 95xxxxxx22</td><td class="deg-cell">MSc Applied Chemistry</td><td class="loc-cell">Jhansi, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">072</td><td class="name-cell">Angel Roshma</td><td class="phone-cell">80xxxxxx05</td><td class="deg-cell">MSc Biotechnology</td><td class="loc-cell">Yercaud, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">073</td><td class="name-cell">Lead #073</td><td class="phone-cell">+91 93xxxxxx87</td><td class="deg-cell">Bsc Biomedical Sciences</td><td class="loc-cell">Jhansi, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">074</td><td class="name-cell">Dr. Pankaj Kumar</td><td class="phone-cell">+91 85xxxxxx27</td><td class="deg-cell">PG Diploma in Embryology</td><td class="loc-cell">Shahganj Jaunpur, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">075</td><td class="name-cell">Nikita Pawar</td><td class="phone-cell">+91 98xxxxxx22</td><td class="deg-cell">Bsc Forensic Science</td><td class="loc-cell">Nashik, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">076</td><td class="name-cell">Prarthana Mukhopadhyay</td><td class="phone-cell">+91 86xxxxxx49</td><td class="deg-cell">BSc Medical Biotech</td><td class="loc-cell">Kolkata, West Bengal</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">077</td><td class="name-cell">Bhargavi</td><td class="phone-cell">63xxxxxx22</td><td class="deg-cell">M.Pharmacy</td><td class="loc-cell">Chennai, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">078</td><td class="name-cell">Hari S</td><td class="phone-cell">+91 95xxxxxx46</td><td class="deg-cell">MSc Biotech</td><td class="loc-cell">Namakkal, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">079</td><td class="name-cell">Palani Palanik</td><td class="phone-cell">+91 90xxxxxx21</td><td class="deg-cell">Bsc Chemistry with Botany</td><td class="loc-cell">Chennai, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">080</td><td class="name-cell">Pavitra Gupta</td><td class="phone-cell">+91 63xxxxxx98</td><td class="deg-cell">MSc Clinical Embryology</td><td class="loc-cell">Miranpur Katra, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">081</td><td class="name-cell">Aastha</td><td class="phone-cell">+91 98xxxxxx45</td><td class="deg-cell">Biotechnology</td><td class="loc-cell">Gurugram / Delhi</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">082</td><td class="name-cell">Dr Tasleem Begum</td><td class="phone-cell">+1 97xxxxxx18</td><td class="deg-cell">BEMS MD</td><td class="loc-cell">Hyderabad, Telangana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">083</td><td class="name-cell">Dr. Tejashree Patil</td><td class="phone-cell">+91 81xxxxxx27</td><td class="deg-cell">BHMS</td><td class="loc-cell">Bhiwandi, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">084</td><td class="name-cell">Wafa Magdi</td><td class="phone-cell">+91 78xxxxxx91</td><td class="deg-cell">PG Intermediate / Masters Prep</td><td class="loc-cell">Khartoum, Sudan</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">085</td><td class="name-cell">Surej Sen</td><td class="phone-cell">+91 88xxxxxx03</td><td class="deg-cell">Bsc Biology &amp; Chemistry</td><td class="loc-cell">Allahabad, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">086</td><td class="name-cell">Ishfaq Nazir</td><td class="phone-cell">+91 96xxxxxx09</td><td class="deg-cell">Bachelor of Physiotherapy</td><td class="loc-cell">Pulwama, J&amp;K</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">087</td><td class="name-cell">Dr. Kanimozhi Elangovan</td><td class="phone-cell">+91 90xxxxxx38</td><td class="deg-cell">BSMS</td><td class="loc-cell">Chennai, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">088</td><td class="name-cell">Siddhant Vinkare</td><td class="phone-cell">+91 91xxxxxx66</td><td class="deg-cell">Bachelor in Biotechnology</td><td class="loc-cell">Umarkhed, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">089</td><td class="name-cell">Priyadharshini</td><td class="phone-cell">+91 95xxxxxx94</td><td class="deg-cell">Pursuing MSc Biochemistry</td><td class="loc-cell">Pudukkottai, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">090</td><td class="name-cell">Sarthak Pandurang Kedari</td><td class="phone-cell">77xxxxxx92</td><td class="deg-cell">Bsc Microbiology</td><td class="loc-cell">Pune, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge below">Below 45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">091</td><td class="name-cell">Mani Kanta</td><td class="phone-cell">+91 89xxxxxx97</td><td class="deg-cell">BSc Agriculture / MSc Agri</td><td class="loc-cell">Hyderabad, Telangana</td><td><span class="badge no">No</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">092</td><td class="name-cell">Yoharasu</td><td class="phone-cell">+91 96xxxxxx14</td><td class="deg-cell">Bsc Medical Lab Technology</td><td class="loc-cell">Karaikudi, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">093</td><td class="name-cell">Zahra Abdul Rafi Qureshi</td><td class="phone-cell">+91 91xxxxxx71</td><td class="deg-cell">Bsc Microbiology &amp; Genetics</td><td class="loc-cell">Bengaluru, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">094</td><td class="name-cell">Aashiq Allaie</td><td class="phone-cell">+91 96xxxxxx66</td><td class="deg-cell">Clinical Embryology</td><td class="loc-cell">Anantnag, J&amp;K</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">095</td><td class="name-cell">Prashant Tiwari</td><td class="phone-cell">+91 96xxxxxx45</td><td class="deg-cell">Info...</td><td class="loc-cell">Lucknow, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">096</td><td class="name-cell">Sandhya P</td><td class="phone-cell">+91 73xxxxxx62</td><td class="deg-cell">MSc (N) OBG</td><td class="loc-cell">Mirzapur, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">097</td><td class="name-cell">Anandkumar</td><td class="phone-cell">+91 99xxxxxx74</td><td class="deg-cell">Bsc Microbiology</td><td class="loc-cell">Salem, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">098</td><td class="name-cell">Abhishek Ray</td><td class="phone-cell">+91 73xxxxxx74</td><td class="deg-cell">MSc Botany</td><td class="loc-cell">Basti, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">099</td><td class="name-cell">Shaik</td><td class="phone-cell">+91 73xxxxxx70</td><td class="deg-cell">Bsc Biotechnology</td><td class="loc-cell">Kurnool, Andhra Pradesh</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">100</td><td class="name-cell">Vani Yadav Jakkula</td><td class="phone-cell">+91 63xxxxxx03</td><td class="deg-cell">Bsc MLT</td><td class="loc-cell">Amangal, Telangana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">101</td><td class="name-cell">Senthil Prabu</td><td class="phone-cell">+91 88xxxxxx92</td><td class="deg-cell">BPT</td><td class="loc-cell">Salem, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">102</td><td class="name-cell">Kamil Ansari</td><td class="phone-cell">+91 82xxxxxx10</td><td class="deg-cell">MBBS</td><td class="loc-cell">Chittorgarh, Rajasthan</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">103</td><td class="name-cell">Abinaya</td><td class="phone-cell">+91 99xxxxxx31</td><td class="deg-cell">Bsc Biotechnology</td><td class="loc-cell">Tiruchirapalli, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">104</td><td class="name-cell">Avinash Kumar</td><td class="phone-cell">888xxxxxx01</td><td class="deg-cell">MSc Microbiology</td><td class="loc-cell">Varanasi, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">105</td><td class="name-cell">Amit Patil</td><td class="phone-cell">+91 96xxxxxx90</td><td class="deg-cell">MBBS</td><td class="loc-cell">Pune, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge below">Below 45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">106</td><td class="name-cell">Ravi Bhalshankar</td><td class="phone-cell">+91 95xxxxxx85</td><td class="deg-cell">Bsc MLT</td><td class="loc-cell">Pune, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">107</td><td class="name-cell">Syed Abrar Ull Haq</td><td class="phone-cell">+91 63xxxxxx58</td><td class="deg-cell">BSc Food Nutrition</td><td class="loc-cell">Bengaluru, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">108</td><td class="name-cell">Lokendra Bahadur Yadav</td><td class="phone-cell">+91 89xxxxxx30</td><td class="deg-cell">BSc</td><td class="loc-cell">Lucknow, Rajasthan</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">109</td><td class="name-cell">Himanshu Dhar Dwivedi</td><td class="phone-cell">+91 94xxxxxx88</td><td class="deg-cell">Bsc in Biochemistry</td><td class="loc-cell">Lucknow, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">110</td><td class="name-cell">Vishal Gole</td><td class="phone-cell">+91 98xxxxxx62</td><td class="deg-cell">BSc</td><td class="loc-cell">Mumbai, Maharashtra</td><td><span class="badge no">No</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">111</td><td class="name-cell">Rahul Singh</td><td class="phone-cell">+91 79xxxxxx58</td><td class="deg-cell">PhD</td><td class="loc-cell">Kanpur, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">112</td><td class="name-cell">Pulakesh Mistry</td><td class="phone-cell">+91 96xxxxxx47</td><td class="deg-cell">MSc Zoology</td><td class="loc-cell">Kolkata, West Bengal</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">113</td><td class="name-cell">Mayur Thakare</td><td class="phone-cell">+91 99xxxxxx14</td><td class="deg-cell">BSc</td><td class="loc-cell">Chalisgaon, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">114</td><td class="name-cell">Praveen Kumar Verma</td><td class="phone-cell">+91 95xxxxxx79</td><td class="deg-cell">Bsc Zoology</td><td class="loc-cell">Sangli, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">115</td><td class="name-cell">Rahul Yadav</td><td class="phone-cell">+91 97xxxxxx12</td><td class="deg-cell">BSc</td><td class="loc-cell">Ahmedabad, Rajasthan</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">116</td><td class="name-cell">Dr. Komal</td><td class="phone-cell">+91 93xxxxxx12</td><td class="deg-cell">BHMS</td><td class="loc-cell">Rewari, Haryana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">117</td><td class="name-cell">Lead #117</td><td class="phone-cell">+91 96xxxxxx95</td><td class="deg-cell">Bsc Medical Lab Tech</td><td class="loc-cell">Lucknow, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge below">Below 45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">118</td><td class="name-cell">Vetti Ganesh</td><td class="phone-cell">+91 93xxxxxx91</td><td class="deg-cell">Bsc Honours Zoology / Biochem</td><td class="loc-cell">Anantapur, Andhra Pradesh</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">119</td><td class="name-cell">Lepitha Shree A S</td><td class="phone-cell">+91 96xxxxxx18</td><td class="deg-cell">Bsc Botany &amp; Zoology</td><td class="loc-cell">Kolar, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">120</td><td class="name-cell">Derick Waronga</td><td class="phone-cell">+91 92xxxxxx59</td><td class="deg-cell">Bsc MLT</td><td class="loc-cell">Kigamboni / Greater Noida</td><td><span class="badge no">No</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">121</td><td class="name-cell">Kaushal Mrabhakar</td><td class="phone-cell">+91 99xxxxxx16</td><td class="deg-cell">Bsc Microbiology</td><td class="loc-cell">Mumbai, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">122</td><td class="name-cell">Renju</td><td class="phone-cell">+91 99xxxxxx22</td><td class="deg-cell">Bsc Cardiac Care Technology</td><td class="loc-cell">Medahalli, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">123</td><td class="name-cell">Ashish Sambayyanmth</td><td class="phone-cell">+91 63xxxxxx29</td><td class="deg-cell">Bsc MLT</td><td class="loc-cell">590019, Karnataka</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">124</td><td class="name-cell">Pradeep Jamra</td><td class="phone-cell">+91 96xxxxxx28</td><td class="deg-cell">BMLT</td><td class="loc-cell">Bhopal, MP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">125</td><td class="name-cell">S. Sommya</td><td class="phone-cell">+91 95xxxxxx74</td><td class="deg-cell">BSc Biochemistry / Nutrition</td><td class="loc-cell">Hyderabad, Telangana</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">126</td><td class="name-cell">Tushar Fulbandhe</td><td class="phone-cell">+91 78xxxxxx59</td><td class="deg-cell">Bsc Biochemistry</td><td class="loc-cell">Gadchiroli, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge meta">Meta</span></td></tr>
+      <tr><td class="num">127</td><td class="name-cell">Lead #127 (Apr 07)</td><td class="phone-cell">—</td><td class="deg-cell">Bsc Biochemistry</td><td class="loc-cell">—</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge meta">Meta</span></td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ══════════════ ORGANIC LEADS ══════════════ -->
+<hr class="sdiv"/>
+<div class="section" id="organic-leads">
+  <div class="sec-hdr">
+    <div class="sec-ico">🌿</div>
+    <div><div class="sec-ttl">Organic Leads — SEO / Direct (April–May 2026)</div><div class="sec-sub2">Leads from graceembryology.com organic search &amp; direct traffic — April–May 2026</div></div>
+    <div class="sec-cnt">37 Leads ✓</div>
+  </div>
+  <div style="overflow-x:auto;">
+  <table class="lead-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Degree</th>
+        <th>City / State</th>
+        <th>Eligible?</th>
+        <th>%age</th>
+        <th>Admission</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="num">001</td><td class="name-cell">Lalit Kakare</td><td class="phone-cell">+91 99xxxxxx82</td><td class="deg-cell">Bsc Zoology</td><td class="loc-cell">Pune, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">002</td><td class="name-cell">Kurung Bagang</td><td class="phone-cell">+91 70xxxxxx19</td><td class="deg-cell">MSc Microbiology</td><td class="loc-cell">Fatehgarh Sahib, Punjab</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">003</td><td class="name-cell">Jitender</td><td class="phone-cell">+91 90xxxxxx20</td><td class="deg-cell">BSc Medical</td><td class="loc-cell">Chandigarh</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">004</td><td class="name-cell">Rohit Salunkhe</td><td class="phone-cell">+91 98xxxxxx73</td><td class="deg-cell">B.Pharmacy</td><td class="loc-cell">Navi Mumbai, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">005</td><td class="name-cell">Mohamed Siddiq</td><td class="phone-cell">+91 86xxxxxx62</td><td class="deg-cell">Bsc Medical Lab Technologist</td><td class="loc-cell">Chennai, Tamil Nadu</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">006</td><td class="name-cell">Divya</td><td class="phone-cell">+91 81xxxxxx55</td><td class="deg-cell">BSc Biotechnology</td><td class="loc-cell">Alappuzha, Kerala</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">007</td><td class="name-cell">Nipu</td><td class="phone-cell">87xxxxxx25</td><td class="deg-cell">BSc Medical Lab Technology</td><td class="loc-cell">NIMS University, Rajasthan</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">008</td><td class="name-cell">Shivani 786</td><td class="phone-cell">+91 88xxxxxx31</td><td class="deg-cell">Bsc Botany &amp; Zoology (3rd yr)</td><td class="loc-cell">Gorakhpur, UP</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">009</td><td class="name-cell">Jummu</td><td class="phone-cell">+91 73xxxxxx92</td><td class="deg-cell">Bsc Microbiology</td><td class="loc-cell">Arakkilad, Kerala</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge this">This Month</span></td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">010</td><td class="name-cell">Vipin Kumar Gupta</td><td class="phone-cell">+91 78xxxxxx75</td><td class="deg-cell">MTech</td><td class="loc-cell">Bhopal, Madhya Pradesh</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">011</td><td class="name-cell">Khan Eram</td><td class="phone-cell">+91 91xxxxxx76</td><td class="deg-cell">Bsc Biotechnology</td><td class="loc-cell">Mumbai, Maharashtra</td><td><span class="badge yes">Yes</span></td><td><span class="badge above">≥45%</span></td><td><span class="badge discuss">After Discussion</span></td><td><span class="badge organic">Organic</span></td></tr>
+          <tr><td class="num">012</td><td class="name-cell">Ashish Sambayyanmath</td><td class="phone-cell">+91 63xxxxxx29</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">013</td><td class="name-cell">Lokendra</td><td class="phone-cell">89xxxxxx30</td><td class="deg-cell">PG Diploma in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">014</td><td class="name-cell">Shaik Elias Basha</td><td class="phone-cell">73xxxxxx70</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">015</td><td class="name-cell">Arpit Verma</td><td class="phone-cell">87xxxxxx69</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">016</td><td class="name-cell">Suraj Sen</td><td class="phone-cell">88xxxxxx03</td><td class="deg-cell">M.Sc. (DMLT — 6 yrs exp)</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">017</td><td class="name-cell">Yashaswini C.</td><td class="phone-cell">97xxxxxx42</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">018</td><td class="name-cell">Sachin Kumar</td><td class="phone-cell">73xxxxxx97</td><td class="deg-cell">PG Diploma in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">019</td><td class="name-cell">Hamda</td><td class="phone-cell">81xxxxxx47</td><td class="deg-cell">PG Diploma in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">020</td><td class="name-cell">Bibyani Ekka</td><td class="phone-cell">90xxxxxx77</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">021</td><td class="name-cell">Vignesh Iyer</td><td class="phone-cell">81xxxxxx73</td><td class="deg-cell">PG Diploma in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">022</td><td class="name-cell">Sougaijam Malemnganba</td><td class="phone-cell">89xxxxxx02</td><td class="deg-cell">B.Sc. + M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">023</td><td class="name-cell">Anchal</td><td class="phone-cell">62xxxxxx10</td><td class="deg-cell">PG Diploma in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">024</td><td class="name-cell">Athrav Mishra</td><td class="phone-cell">90xxxxxx61</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">025</td><td class="name-cell">Jayeshkumar Ashokbhai</td><td class="phone-cell">90xxxxxx50</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">026</td><td class="name-cell">Nesren Hassan</td><td class="phone-cell">+20 12xxxxxx70</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">International</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">027</td><td class="name-cell">Lily McDonough</td><td class="phone-cell">48xxxxxx02</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">International</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">028</td><td class="name-cell">Akash Verma</td><td class="phone-cell">99xxxxxx24</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">029</td><td class="name-cell">Ramesh</td><td class="phone-cell">81xxxxxx60</td><td class="deg-cell">Cert. — Advance Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">030</td><td class="name-cell">Anooja L.G.</td><td class="phone-cell">99xxxxxx00</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">031</td><td class="name-cell">Hema</td><td class="phone-cell">88xxxxxx55</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">032</td><td class="name-cell">Dr. Ashim Sharma</td><td class="phone-cell">98xxxxxx20</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">033</td><td class="name-cell">M. Jenifer</td><td class="phone-cell">93xxxxxx29</td><td class="deg-cell">B.Sc. + M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">034</td><td class="name-cell">Zara Tabrez</td><td class="phone-cell">077xxxxxx54</td><td class="deg-cell">Cert. — ICSI (Hands-on Training)</td><td class="loc-cell">International</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">035</td><td class="name-cell">Priya</td><td class="phone-cell">93xxxxxx95</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">036</td><td class="name-cell">Gurpreet</td><td class="phone-cell">95xxxxxx46</td><td class="deg-cell">M.Sc. in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+      <tr><td class="num">037</td><td class="name-cell">Parvathavarthini G.</td><td class="phone-cell">90xxxxxx61</td><td class="deg-cell">PG Diploma in Clinical Embryology</td><td class="loc-cell">—</td><td>—</td><td>—</td><td>—</td><td><span class="badge organic">Organic</span></td></tr>
+</tbody>
+  </table>
+  </div>
+</div>
+
+<!-- ══════════════ STATE BREAKDOWN ══════════════ -->
+<hr class="sdiv"/>
+<div class="section" id="state-breakdown">
+  <div class="sec-hdr purple">
+    <div class="sec-ico purple">🗺️</div>
+    <div><div class="sec-ttl">State-Wise Lead Distribution</div><div class="sec-sub2">Geographic breakdown — April 2026 Meta Leads</div></div>
+    <div class="sec-cnt blue">20+ States</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:10px;">Top States by Lead Volume</div>
+      <div class="ins-row"><span class="k">Maharashtra</span><div class="bar-wrap"><div class="bar" style="width:100%"></div></div><span class="v">16</span></div>
+      <div class="ins-row"><span class="k">Uttar Pradesh</span><div class="bar-wrap"><div class="bar" style="width:69%"></div></div><span class="v">11</span></div>
+      <div class="ins-row"><span class="k">Tamil Nadu</span><div class="bar-wrap"><div class="bar blue" style="width:56%"></div></div><span class="v">9</span></div>
+      <div class="ins-row"><span class="k">Karnataka</span><div class="bar-wrap"><div class="bar purple" style="width:50%"></div></div><span class="v">8</span></div>
+      <div class="ins-row"><span class="k">Haryana</span><div class="bar-wrap"><div class="bar" style="width:31%"></div></div><span class="v">5</span></div>
+      <div class="ins-row"><span class="k">Telangana</span><div class="bar-wrap"><div class="bar orange" style="width:25%"></div></div><span class="v">4</span></div>
+      <div class="ins-row"><span class="k">Rajasthan</span><div class="bar-wrap"><div class="bar orange" style="width:25%"></div></div><span class="v">4</span></div>
+      <div class="ins-row"><span class="k">Kerala</span><div class="bar-wrap"><div class="bar blue" style="width:13%"></div></div><span class="v">2</span></div>
+      <div class="ins-row"><span class="k">Gujarat</span><div class="bar-wrap"><div class="bar blue" style="width:13%"></div></div><span class="v">2</span></div>
+      <div class="ins-row"><span class="k">West Bengal</span><div class="bar-wrap"><div class="bar blue" style="width:13%"></div></div><span class="v">2</span></div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;">Other States (1 Lead Each)</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted2);">J&amp;K</span>
+        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted2);">Andhra Pradesh</span>
+        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted2);">Manipur</span>
+        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted2);">Uttarakhand</span>
+        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted2);">Madhya Pradesh</span>
+        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted2);">Himachal Pradesh</span>
+        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted2);">Assam</span>
+        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted2);">Delhi</span>
+        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted2);">Jodhpur</span>
+        <span style="background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 10px;font-size:11px;color:var(--muted2);">Sudan (International)</span>
+      </div>
+      <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;">Key Insight</div>
+        <div style="font-size:12px;color:var(--muted2);line-height:1.7;">
+          ✦ Leads came from <strong style="color:var(--white)">20+ states</strong> across India — confirming national-level brand reach.<br>
+          ✦ <strong style="color:var(--green)">South India</strong> (Tamil Nadu + Karnataka + Telangana + Kerala + Andhra) = <strong style="color:var(--white)">26 leads</strong><br>
+          ✦ <strong style="color:var(--blue)">North India</strong> (UP + Haryana + Rajasthan + Delhi + J&amp;K) = <strong style="color:var(--white)">23 leads</strong><br>
+          ✦ <strong style="color:var(--purple)">West India</strong> (Maharashtra + Gujarat) = <strong style="color:var(--white)">18 leads</strong><br>
+          ✦ 1 <strong style="color:var(--orange)">International lead</strong> from Sudan — ads reached globally.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ DEGREE BREAKDOWN ══════════════ -->
+<hr class="sdiv"/>
+<div class="section" id="degree-breakdown">
+  <div class="sec-hdr orange">
+    <div class="sec-ico orange">🎓</div>
+    <div><div class="sec-ttl">Degree / Qualification Breakdown</div><div class="sec-sub2">What qualifications Meta leads hold — April 2026</div></div>
+    <div class="sec-cnt orange">10 Degree Categories</div>
+  </div>
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;">
+    <div class="ins-row"><span class="k">BSc (Biotech / Micro / Zoology / Life Sci)</span><div class="bar-wrap"><div class="bar" style="width:100%"></div></div><span class="v">62</span></div>
+    <div class="ins-row"><span class="k">MSc (Biotech / Micro / Embryology etc.)</span><div class="bar-wrap"><div class="bar blue" style="width:22%"></div></div><span class="v">14</span></div>
+    <div class="ins-row"><span class="k">BHMS / BAMS / BSMS / BNYS (Ayush)</span><div class="bar-wrap"><div class="bar purple" style="width:16%"></div></div><span class="v">10</span></div>
+    <div class="ins-row"><span class="k">MBBS / BDS / BEMS (Medical Graduates)</span><div class="bar-wrap"><div class="bar orange" style="width:10%"></div></div><span class="v">6</span></div>
+    <div class="ins-row"><span class="k">MLT / BMLT / DMLT (Lab Technologists)</span><div class="bar-wrap"><div class="bar" style="width:14%"></div></div><span class="v">9</span></div>
+    <div class="ins-row"><span class="k">BPT / Physiotherapy</span><div class="bar-wrap"><div class="bar blue" style="width:5%"></div></div><span class="v">3</span></div>
+    <div class="ins-row"><span class="k">Pharmacy (B.Pharm / M.Pharm)</span><div class="bar-wrap"><div class="bar purple" style="width:5%"></div></div><span class="v">3</span></div>
+    <div class="ins-row"><span class="k">PhD / Doctorate</span><div class="bar-wrap"><div class="bar orange" style="width:5%"></div></div><span class="v">3</span></div>
+    <div class="ins-row"><span class="k">PG Diploma / Certificate Courses</span><div class="bar-wrap"><div class="bar" style="width:3%"></div></div><span class="v">2</span></div>
+    <div class="ins-row"><span class="k">Others / Not Life Science</span><div class="bar-wrap"><div class="bar orange" style="width:8%"></div></div><span class="v">5</span></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="rep-footer">
+  <div class="fl">Prepared by &nbsp;<strong>Cyberbizz Technologies</strong><br>
+  <span style="font-size:11px;color:var(--muted)">Digital Marketing &amp; Ads Agency · graceembryology.com · April 2026</span></div>
+  <div class="fstamp">✦ 164 Total Leads · April 2026</div>
+</div>
+
+</div>
+</body>
+</html>
